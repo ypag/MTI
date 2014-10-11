@@ -1,0 +1,32 @@
+from imgproc import *
+import os
+import time
+# Create a camera
+cam = Camera(80, 60)
+
+# use the camera's width and height to set the viewer size
+view = Viewer(cam.width, cam.height, "Blob finding")
+# endlessly loop until the user exits
+while True:
+# grab an image from the camera
+  image = cam.grabImage()
+  for x in range(30, 50):
+  	for y in range(20, 40):
+  		# get the value of the current pixel
+  		red, green, blue = image[x, y]
+  		 # check if the red intensity is greater than the green and blue
+  		if red > green and red > blue :
+  		
+  		
+  			# colour pixels which pass the test black
+  			image[x, y] = 0, 0, 0
+  
+
+  # display the image on the viewer
+  view.displayImage(image)
+ 
+
+
+
+
+   #os.system('mpg321 119643__ramagochi__steps-on-leaf-2-16.mp3 &')
