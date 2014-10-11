@@ -1,0 +1,73 @@
+import imgproc
+from imgproc import *
+
+
+# open a webcam to take pictures
+camera = Camera(160, 120)
+
+# Open a viewer window to display images
+viewer = Viewer(160, 120, "The first step")
+
+# take a picture from the camera
+img = camera.grabImage()
+
+# display the image in the viewer
+viewer.displayImage(img)
+
+
+# iterate over each pixel in the image
+for x in range(0, img.width):
+	for y in range(0, img.height):
+		# Get the value at the xth column and yth row, place the intensities into variables
+		red, green, blue = img[x, y]
+
+		
+
+def GetDominant(cardColor):
+	redCounter=0
+	greenCounter=0
+	blueCounter=0
+
+#test to find which colour is dominant
+	if red > green and red > blue:
+	# Red is dominant, so set the pixel to completely red
+		redCounter+=1
+	elif green > red and green > blue:
+		greenCounter+=1
+	else:
+		# if red or green isn't dominant, blue must be
+		blueCounter+=1
+
+
+	m=max(redCounter,greenCounter,blueCounter)
+	if m==redCounter:
+		domColor=0
+	elif m==greenCounter:
+		domColor= 1
+	elif m==blueCounter:
+		domColor= 2
+	else:
+		domColor=0
+
+	for x in range(0, img.width):
+		for y in range(0, img.height):
+			base=[0,0,0]
+			base[domColor]=255
+			img[x,y]= base
+			# converts all pixels in dominant color of the image
+			
+
+for i in range (0,3):
+
+	GetDominant()
+
+
+print'domColor'
+# display the image again
+viewer.displayImage(img)
+
+# delay for 5000 milliseconds to give us time to see the changes, then exit
+waitTime(5000)
+
+
+# end of the script
